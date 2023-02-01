@@ -29,10 +29,11 @@ func (c WebhookController) WebHook(ctx *gin.Context) {
 		return
 	}
 	for _, event := range events {
-		if event.Type == linebot.EventTypeMessage {
+		if event.Type == linebot.EventTypeBeacon {
 			replyToken := event.ReplyToken
 			var messages []linebot.SendingMessage
-			messages = append(messages, linebot.NewTextMessage("hello phoom"))
+			messages = append(messages, linebot.NewStickerMessage("11537", "52002745"))
+			messages = append(messages, linebot.NewTextMessage("ยินดีต้อนรับกลับครับนายท่าน"))
 			if _, err := bot.ReplyMessage(replyToken, messages...).Do(); err != nil {
 				ctx.JSON(500, "")
 				return
