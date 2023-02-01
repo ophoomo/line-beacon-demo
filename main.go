@@ -23,7 +23,7 @@ func main() {
 
 	router := routes.SetupRouter()
 	srv := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + os.Getenv("APP_PORT"),
 		Handler: router,
 	}
 
